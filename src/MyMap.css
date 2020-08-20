@@ -1,3 +1,9 @@
 .leaflet-container {
     background-color: transparent;
 }
+
+.mymap{
+    height: 65vh;
+    width: 40vw;
+    align-content: center;
+}

@@ -5,6 +5,10 @@ import numeral from "numeral";
 function Table({ countries }) {
     return (
         <div className="table">
+            <tr>
+                <th>Country</th>
+                <th>Confirmed</th>
+            </tr>
             {countries.map(({ country, cases }) => (
                 <tr>
                     <td>{country}</td>

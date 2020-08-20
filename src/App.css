@@ -1,29 +1,44 @@
 body{
   background-color: #f5f6fa;
+  font-family: 'archia';
 }
 
 .app{
-  display: flex;
-  justify-content: space-evenly;
-  align-content: center;
-  align-items: center;
-  padding: 20px;
-}
-
-.app-header {
+  padding: 8vh;
   display: flex;
   justify-content: space-between;
+}
+
+.app-header{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  margin-bottom: 20px;
+}
+
+.app-dropdown{
+  width: 90%;
+  box-shadow: 0 10px 35px rgba(0,0,0,.1);
+}
+
+.app-select {
+  background-color: transparent;
+}
+
+.app-menuitem {
+  background-color: turquoise;
 }
 
 .app-stats{
-  width: 80%;
   display: flex;
   justify-content: center;
   flex-grow: 1;
-  flex-wrap: wrap;
-  flex-shrink: 0;
+}
+
+.app-left{
+  display: flex;
+  flex-direction: column;
+  width: 50%;
 }
 
 @media (max-width: 990px){

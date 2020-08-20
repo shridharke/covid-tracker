@@ -8,15 +8,15 @@ import { showDataOnMap } from "./util";
 function MyMap({ casesType, countries, center, zoom }) {
 
     const countryStyle = {
-        fillColor: "red",
-        color: "red",
-        weight: 1,
+        fillColor: "transparent",
+        color: "#007bff",
+        weight: 0.5,
     }
 
     return (
         <div>
             <h1>GeoJSON Map</h1>
-            <Map style={{ height: "80vh", width: "90vw", alignContent: "center" }} zoom={zoom} center={center}>
+            <Map className="mymap" zoom={zoom} center={center}>
                 <GeoJSON style={countryStyle} data={mapData.features} />
                 {showDataOnMap(countries,casesType)}
             </Map>

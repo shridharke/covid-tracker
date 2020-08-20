@@ -2,21 +2,22 @@ import React, { useState, useEffect } from 'react';
 import { FormControl, Select, MenuItem, Card, CardContent } from "@material-ui/core";
 import InfoBox from "./InfoBox";
 import Map from "./Map";
-import './App.css';
 import Table from "./Table";
 import { sortData, prettyPrintStat } from "./util";
 import LineGraph from "./LineGraph";
 import "leaflet/dist/leaflet.css";
 import MyMap from "./MyMap";
 import numeral from "numeral";
+import './App.css';
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
 	const [countries, setCountries] = useState([]);
 	const [country, setCountry] = useState("worldwide");
 	const [countryInfo, setCountryInfo] = useState({});
 	const [tableData, setTableData] = useState([]);
-	const [mapCenter, setMapCenter] = useState({lat: 34.80746, lng: -40.4796});
-	const [mapZoom, setMapZoom] = useState(3);
+	const [mapCenter, setMapCenter] = useState({lat: 0, lng: 0});
+	const [mapZoom, setMapZoom] = useState(2);
 	const [mapCountries, setMapCountries] = useState([]);
 	const [casesType, setCasesType] = useState("cases");
 
@@ -60,20 +61,23 @@ function App() {
 		});
 	}
 
+	const todayDate = new Date();
+
 	return (
 		<div>
 			<div className="app">
-				<div>
+				<div className="app-left">
 					<div className="app-header">
-						<h1>COVID 19 Stats</h1>
+						<h6>Select your Country</h6>
 						<FormControl className="app-dropdown">
-							<Select variant="outlined" onChange={onCountryChange} value={country}>
-								<MenuItem value="worldwide">Worldwide</MenuItem>
+							<Select className="app-select" variant="outlined" onChange={onCountryChange} value={country}>
+								<MenuItem style={{backgroundColor: 'red', color: 'white'}} className="app-menutitem" value="worldwide">Worldwide</MenuItem>
 								{countries.map(country =>(
 									<MenuItem value={country.value}>{country.name}</MenuItem>
 								))}
 							</Select>
 						</FormControl>
+						<h5>{todayDate.toLocaleString('en-GB',{day:'numeric', month:'short', year:'numeric'})}</h5>
 					</div>
 					<div className="app-stats">
 						<InfoBox active={casesType === "cases"} onClick={e => setCasesType('cases')} title="Cases" cases={"+" + numeral(countryInfo.todayCases).format("0,0")} total={numeral(countryInfo.cases).format("0,0")} />
@@ -81,18 +85,22 @@ function App() {
 						<InfoBox active={casesType === "recovered"} onClick={e => setCasesType('recovered')} title="Recovered" cases={"+" + numeral(countryInfo.todayRecovered).format("0,0")} total={numeral(countryInfo.recovered).format("0,0")} />
 						<InfoBox active={casesType === "deaths"} onClick={e => setCasesType('deaths')} title="Deaths" cases={"+" + numeral(countryInfo.todayDeaths).format("0,0")} total={numeral(countryInfo.deaths).format("0,0")} />
 					</div>
-					<MyMap casesType={casesType} countries={mapCountries} center={mapCenter} zoom={mapZoom} />
-				</div>
-			</div>
-			<div>
-				<Card>
-					<CardContent>
+					<div>
 						<h3>Live Cases Table</h3>
 						<Table countries={tableData} />
-						<h3>Worldwide new Cases</h3>
-						<LineGraph casesType={casesType} />
-					</CardContent>
-				</Card>
+					</div>
+				</div>
+				<div className="app-right">
+					<Card>
+						<CardContent>
+							<div className="app-map">
+								<MyMap casesType={casesType} countries={mapCountries} center={mapCenter} zoom={mapZoom} />
+							</div>
+							<h3>Worldwide new Cases</h3>
+							<LineGraph casesType={casesType} />
+						</CardContent>
+					</Card>
+				</div>
 			</div>
 		</div>
 	);

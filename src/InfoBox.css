@@ -1,12 +1,16 @@
-.infoBox {
+/* .infoBox {
     flex:1;
     margin-right: 7px;
     margin-left: 7px;
-}
+} */
 
 /* .infoBox:not(:last-child) {
     margin-right: 15px;
 } */
+
+.infoBox {
+    align-items: center;
+}
 
 .infoBox-cases {
     color: #cc1034;
