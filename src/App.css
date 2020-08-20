@@ -1,0 +1,33 @@
+body{
+  background-color: #f5f6fa;
+}
+
+.app{
+  display: flex;
+  justify-content: space-evenly;
+  align-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.app-stats{
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  flex-grow: 1;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+}
+
+@media (max-width: 990px){
+  .app{
+    flex-direction: column;
+  }
+}
