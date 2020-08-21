@@ -10,6 +10,8 @@
 
 .infoBox {
     align-items: center;
+    width: 10rem;
+    text-align: center;
 }
 
 .infoBox-cases {

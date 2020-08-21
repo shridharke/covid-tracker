@@ -33,6 +33,7 @@ body{
   display: flex;
   justify-content: center;
   flex-grow: 1;
+  flex-wrap: wrap;
 }
 
 .app-left{
@@ -44,5 +45,8 @@ body{
 @media (max-width: 990px){
   .app{
     flex-direction: column;
+  }
+  .app-left{
+    width: 90vw;
   }
 }

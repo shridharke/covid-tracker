@@ -5,13 +5,13 @@ import "./InfoBox.css";
 function InfoBox({ title, active, cases, total, ...props }) {
     return (
         <div>
-            <Card onClick={props.onClick} className={`infoBox ${active && "infoBox-selected"}`}>
-                <CardContent>
-                    <Typography className="infoBox-title" color="textSecondary">{title}</Typography>
-                    <h2 className="infoBox-cases">{cases}</h2>
-                    <Typography className="infoBox-total" color="textSecondary">{total}</Typography>
-                </CardContent>
-            </Card>
+            <div onClick={props.onClick} className={`infoBox ${active && "infoBox-selected"}`}>
+                <div>
+                    <h5 className="infoBox-title" color="textSecondary">{title}</h5>
+                    <h4 className="infoBox-cases">{cases}</h4>
+                    <h1 className="infoBox-total" color="textSecondary">{total}</h1>
+                </div>
+            </div>
         </div>
     )
 }

@@ -80,10 +80,10 @@ function App() {
 						<h5>{todayDate.toLocaleString('en-GB',{day:'numeric', month:'short', year:'numeric'})}</h5>
 					</div>
 					<div className="app-stats">
-						<InfoBox active={casesType === "cases"} onClick={e => setCasesType('cases')} title="Cases" cases={"+" + numeral(countryInfo.todayCases).format("0,0")} total={numeral(countryInfo.cases).format("0,0")} />
-						<InfoBox active={casesType === "active"} onClick={e => setCasesType('active')} title="Active" cases={"+" + numeral(countryInfo.active).format("0,0")} total={numeral(countryInfo.active).format("0,0")} />
-						<InfoBox active={casesType === "recovered"} onClick={e => setCasesType('recovered')} title="Recovered" cases={"+" + numeral(countryInfo.todayRecovered).format("0,0")} total={numeral(countryInfo.recovered).format("0,0")} />
-						<InfoBox active={casesType === "deaths"} onClick={e => setCasesType('deaths')} title="Deaths" cases={"+" + numeral(countryInfo.todayDeaths).format("0,0")} total={numeral(countryInfo.deaths).format("0,0")} />
+						<InfoBox active={casesType === "cases"} onClick={e => setCasesType('cases')} title="Cases" cases={numeral(countryInfo.todayCases).format("0,0")} total={numeral(countryInfo.cases).format("0,0")} />
+						<InfoBox active={casesType === "active"} onClick={e => setCasesType('active')} title="Active" cases={numeral(countryInfo.active).format("0,0")} total={numeral(countryInfo.active).format("0,0")} />
+						<InfoBox active={casesType === "recovered"} onClick={e => setCasesType('recovered')} title="Recovered" cases={numeral(countryInfo.todayRecovered).format("0,0")} total={numeral(countryInfo.recovered).format("0,0")} />
+						<InfoBox active={casesType === "deaths"} onClick={e => setCasesType('deaths')} title="Deaths" cases={numeral(countryInfo.todayDeaths).format("0,0")} total={numeral(countryInfo.deaths).format("0,0")} />
 					</div>
 					<div>
 						<h3>Live Cases Table</h3>
