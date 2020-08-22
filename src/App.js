@@ -64,26 +64,29 @@ function App() {
 	const todayDate = new Date();
 
 	return (
-		<div>
-			<div className="app">
+		<div className="App">
+			<div className="home">
 				<div className="app-left">
 					<div className="app-header">
-						<h6>Select your Country</h6>
-						<FormControl className="app-dropdown">
-							<Select className="app-select" variant="outlined" onChange={onCountryChange} value={country}>
-								<MenuItem style={{backgroundColor: 'red', color: 'white'}} className="app-menutitem" value="worldwide">Worldwide</MenuItem>
-								{countries.map(country =>(
-									<MenuItem value={country.value}>{country.name}</MenuItem>
-								))}
-							</Select>
-						</FormControl>
-						<h5>{todayDate.toLocaleString('en-GB',{day:'numeric', month:'short', year:'numeric'})}</h5>
+						<div className="app-search">
+							<h6>Select your Country</h6>
+							<div className="line"></div>
+							<FormControl className="app-dropdown">
+								<Select className="app-select" variant="outlined" onChange={onCountryChange} value={country}>
+									<MenuItem style={{backgroundColor: 'red', color: 'white'}} className="app-menutitem" value="worldwide">Worldwide</MenuItem>
+									{countries.map(country =>(
+										<MenuItem value={country.value}>{country.name}</MenuItem>
+									))}
+								</Select>
+							</FormControl>
+						</div>
+						<h5 className="app-date">{todayDate.toLocaleString('en-GB',{day:'numeric', month:'short', year:'numeric'})}</h5>
 					</div>
 					<div className="app-stats">
-						<InfoBox active={casesType === "cases"} onClick={e => setCasesType('cases')} title="Cases" cases={numeral(countryInfo.todayCases).format("0,0")} total={numeral(countryInfo.cases).format("0,0")} />
-						<InfoBox active={casesType === "active"} onClick={e => setCasesType('active')} title="Active" cases={numeral(countryInfo.active).format("0,0")} total={numeral(countryInfo.active).format("0,0")} />
-						<InfoBox active={casesType === "recovered"} onClick={e => setCasesType('recovered')} title="Recovered" cases={numeral(countryInfo.todayRecovered).format("0,0")} total={numeral(countryInfo.recovered).format("0,0")} />
-						<InfoBox active={casesType === "deaths"} onClick={e => setCasesType('deaths')} title="Deaths" cases={numeral(countryInfo.todayDeaths).format("0,0")} total={numeral(countryInfo.deaths).format("0,0")} />
+						<InfoBox className="infoitem confirmedBox" casesType={casesType} active={casesType === "cases"} onClick={e => setCasesType('cases')} title="Cases" cases={"+"+numeral(countryInfo.todayCases).format("0,0")} total={numeral(countryInfo.cases).format("0,0")} />
+						<InfoBox className="infoitem activeBox" casesType={casesType} active={casesType === "active"} onClick={e => setCasesType('active')} title="Active" cases={" "} total={numeral(countryInfo.active).format("0,0")} />
+						<InfoBox className="infoitem recoveredBox" casesType={casesType} active={casesType === "recovered"} onClick={e => setCasesType('recovered')} title="Recovered" cases={"+"+numeral(countryInfo.todayRecovered).format("0,0")} total={numeral(countryInfo.recovered).format("0,0")} />
+						<InfoBox className="infoitem deathBox" casesType={casesType} active={casesType === "deaths"} onClick={e => setCasesType('deaths')} title="Deaths" cases={"+"+numeral(countryInfo.todayDeaths).format("0,0")} total={numeral(countryInfo.deaths).format("0,0")} />
 					</div>
 					<div>
 						<h3>Live Cases Table</h3>

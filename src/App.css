@@ -1,24 +1,118 @@
-body{
-  background-color: #f5f6fa;
-  font-family: 'archia';
+html{
+  overflow-x: hidden;
+  width: 100vw;
 }
 
-.app{
-  padding: 8vh;
+body{
+  margin: 0;
+  padding: 0;
+}
+
+/* h1{
+  font-size: 24px !important;
+  font-weight: 900;
+}
+
+h2{
+  font-size: 18px !important;
+  font-weight: 400;
+}
+
+h3{
+  font-size: 14px !important;
+  font-weight: 400;
+}
+
+h4{
+  font-size: 13px !important;
+  font-weight: 900;
+}
+
+h5{
+  font-size: 12px !important;
+  font-weight: 900;
+}
+
+h6{
+  font-size: 11px !important;
+  font-weight: 600;
+} */
+
+.App{
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.home{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-left: 3rem;
+  margin-right: 3rem;
+  padding-top: 5rem;
+}
+
+.app-left{
+  display: flex;
+  flex-direction: column;
+  width: 34rem;
+  margin-left: 9rem;
+  min-height: 60rem;
+}
+
+.app-right{
+  display: flex;
+  flex-direction: column;
+  width: 34rem;
+  margin-left: 2.5rem;
+  min-height: 10rem;
 }
 
 .app-header{
+  align-self: center;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  max-width: 40rem;
+  width:100%;
+}
+
+.app-search{
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+  position: relative;
+  width: 100%;
+}
+
+.app-search h6{
+  align-self: center;
+  font-size: 0.75rem;
+  color: #6c757d;
+  margin-bottom: 1rem;
+}
+
+.line{
+  align-self: center;
+  height: 1rem;
+  width: 2px;
+  background: rgba(108,117,125,.0627451);
 }
 
 .app-dropdown{
-  width: 90%;
+  width: 100%;
+  position: relative;
+  align-self: center;
   box-shadow: 0 10px 35px rgba(0,0,0,.1);
+}
+
+.app-date{
+  font-size: 1rem;
+  align-self: center;
+  color: #6c757d;
+  font-weight: 600;
 }
 
 .app-select {
@@ -30,16 +124,20 @@ body{
 }
 
 .app-stats{
+  position: relative;
+  margin-top: 1rem;
   display: flex;
-  justify-content: center;
-  flex-grow: 1;
-  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
 }
 
-.app-left{
-  display: flex;
-  flex-direction: column;
-  width: 50%;
+.app-stats .infoitem {
+  width: 25%;
+}
+
+.app-stats .confirmedBox{
+  color: #ff073a;
 }
 
 @media (max-width: 990px){
