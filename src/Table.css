@@ -1,10 +1,10 @@
 .table{
     margin-top: 20px;
-    overflow: scroll;
-    scrollbar-width: 0px;
-    height: 400px;
-    color: #6a5d5d;
-    overflow-x: hidden;
+    /* overflow: scroll;
+    height: 400px; */
+    color: #6c757d;
+    border-radius: 3px;
+    min-width: 100%;
 }
 
 .table tr {
@@ -13,6 +13,10 @@
 }
 
 .table td {
+    padding: 0.5rem;
+}
+
+.table th{
     padding: 0.5rem;
 }
 

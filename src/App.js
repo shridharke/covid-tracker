@@ -84,11 +84,11 @@ function App() {
 					</div>
 					<div className="app-stats">
 						<InfoBox className="infoitem confirmedBox" casesType={casesType} active={casesType === "cases"} onClick={e => setCasesType('cases')} title="Cases" cases={"+"+numeral(countryInfo.todayCases).format("0,0")} total={numeral(countryInfo.cases).format("0,0")} />
-						<InfoBox className="infoitem activeBox" casesType={casesType} active={casesType === "active"} onClick={e => setCasesType('active')} title="Active" cases={" "} total={numeral(countryInfo.active).format("0,0")} />
+						<InfoBox className="infoitem activeBox" casesType={casesType} active={casesType === "active"} onClick={e => setCasesType('active')} title="Active" cases={"\n"} total={numeral(countryInfo.active).format("0,0")} />
 						<InfoBox className="infoitem recoveredBox" casesType={casesType} active={casesType === "recovered"} onClick={e => setCasesType('recovered')} title="Recovered" cases={"+"+numeral(countryInfo.todayRecovered).format("0,0")} total={numeral(countryInfo.recovered).format("0,0")} />
 						<InfoBox className="infoitem deathBox" casesType={casesType} active={casesType === "deaths"} onClick={e => setCasesType('deaths')} title="Deaths" cases={"+"+numeral(countryInfo.todayDeaths).format("0,0")} total={numeral(countryInfo.deaths).format("0,0")} />
 					</div>
-					<div>
+					<div className="app-table">
 						<h3>Live Cases Table</h3>
 						<Table countries={tableData} />
 					</div>

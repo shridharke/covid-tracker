@@ -57,8 +57,7 @@ h6{
 .app-left{
   display: flex;
   flex-direction: column;
-  width: 34rem;
-  margin-left: 9rem;
+  width: 40rem;
   min-height: 60rem;
 }
 
@@ -138,6 +137,13 @@ h6{
 
 .app-stats .confirmedBox{
   color: #ff073a;
+}
+
+.app-table {
+  align-self: center;
+  overflow-x: auto;
+  margin-bottom: 2.5rem;
+  width: 100%;
 }
 
 @media (max-width: 990px){
