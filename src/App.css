@@ -44,6 +44,16 @@ h6{
   min-height: 100vh;
 }
 
+.light-mode{
+  background-color: white;
+  color: black;
+}
+
+.dark-mode {
+  background-color: #161625;
+  color: #bdbdbd;
+}
+
 .home{
   display: flex;
   flex-direction: row;
@@ -64,7 +74,7 @@ h6{
 .app-right{
   display: flex;
   flex-direction: column;
-  width: 34rem;
+  width: 40rem;
   margin-left: 2.5rem;
   min-height: 10rem;
 }
@@ -105,6 +115,7 @@ h6{
   position: relative;
   align-self: center;
   box-shadow: 0 10px 35px rgba(0,0,0,.1);
+  color: #bdbdbd;
 }
 
 .app-date{
@@ -116,6 +127,7 @@ h6{
 
 .app-select {
   background-color: transparent;
+  color: #bdbdbd;
 }
 
 .app-menuitem {
@@ -135,15 +147,75 @@ h6{
   width: 25%;
 }
 
+.app-mytable{
+  align-self: center;
+  margin-top: 1rem;
+  margin-bottom: 2.5rem;
+  overflow-x: auto;
+  width: 100%;
+}
+/* 
 .app-stats .confirmedBox{
   color: #ff073a;
-}
+} */
 
 .app-table {
   align-self: center;
   overflow-x: auto;
   margin-bottom: 2.5rem;
   width: 100%;
+}
+
+.app-title {
+  align-self: center;
+  height: 5.25rem;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  position: relative;
+  width: 100%;
+}
+
+.app-map{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.geomap {
+  align-self: center;
+  margin-bottom: 3rem;
+  position: relative;
+  width: 100%;
+  border: 5px rgba(108, 117, 125, 0.125) solid;
+}
+
+.linegraph-title{
+  text-align: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.app-theme {
+  position: absolute;
+  margin-top: 1rem;
+  margin-right: 1rem;
+  top: 0;
+  right: 0;
+  width: 2rem;
+  height: 2rem;
+}
+
+.light-logo {
+  width: 100%;
+  height: 100%;
+  color: #000;
+}
+
+.light-logo {
+  width: 100%;
+  height: 100%;
+  color: #000;
 }
 
 @media (max-width: 990px){

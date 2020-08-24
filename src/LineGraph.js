@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Line } from "react-chartjs-2";
 import numeral from "numeral";
+import "./LineGraph.css";
 
 const options = {
+  responsive: true,
   legend: {
     display: false,
   },
@@ -11,7 +13,7 @@ const options = {
       radius: 0,
     },
   },
-  maintainAspectRatio: false,
+  // maintainAspectRatio: false,
   tooltips: {
     mode: "index",
     intersect: false,
@@ -24,6 +26,9 @@ const options = {
   scales: {
     xAxes: [
       {
+        gridLines: {
+          display: false,
+        },
         type: "time",
         time: {
           format: "MM/DD/YY",
@@ -34,7 +39,7 @@ const options = {
     yAxes: [
       {
         gridLines: {
-          display: false,
+          display: true,
         },
         ticks: {
           // Include a dollar sign in the ticks
@@ -54,7 +59,7 @@ const buildChartData = (data, casesType) => {
     if (lastDataPoint) {
       let newDataPoint = {
         x: date,
-        y: data[casesType][date] - lastDataPoint,
+        y: data[casesType][date],
       };
       chartData.push(newDataPoint);
     }
@@ -83,15 +88,30 @@ function LineGraph({ casesType }) {
     fetchData();
   }, [casesType]);
 
+  const lineColors = {
+    cases: {
+      border: "#ff073a",
+      bg: "rgba(255, 7, 58, 0.125)"
+    },
+    recovered: {
+      border: "#28a745",
+      bg: "rgba(40, 167, 69, 0.125)"
+    },
+    deaths: {
+      border: "#6c757d",
+      bg: "rgba(108, 117, 125, 0.125)"
+    },
+  }
+
   return (
-    <div>
+    <div className={"linegraph-" + casesType}>
       {data?.length > 0 && (
         <Line
           data={{
             datasets: [
               {
-                backgroundColor: "rgba(204, 16, 52, 0.5)",
-                borderColor: "#CC1034",
+                backgroundColor: lineColors[casesType].bg,
+                borderColor: lineColors[casesType].border,
                 data: data,
               },
             ],

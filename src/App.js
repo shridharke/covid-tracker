@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { FormControl, Select, MenuItem, Card, CardContent } from "@material-ui/core";
+import { FormControl, Select, MenuItem } from "@material-ui/core";
+import { createMuiTheme, ThemeProvider} from "@material-ui/core/styles";
 import InfoBox from "./InfoBox";
-import Map from "./Map";
-import Table from "./Table";
-import { sortData, prettyPrintStat } from "./util";
+import Mytable from "./Mytable";
+import { sortData } from "./util";
 import LineGraph from "./LineGraph";
 import "leaflet/dist/leaflet.css";
 import MyMap from "./MyMap";
 import numeral from "numeral";
 import './App.css';
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import SunLogo from "./sun.svg";
+import MoonLogo from "./moon.svg";
 
 function App() {
+	const [darkMode, setDarkMode] = useState(false);
 	const [countries, setCountries] = useState([]);
 	const [country, setCountry] = useState("worldwide");
 	const [countryInfo, setCountryInfo] = useState({});
@@ -19,7 +22,7 @@ function App() {
 	const [mapCenter, setMapCenter] = useState({lat: 0, lng: 0});
 	const [mapZoom, setMapZoom] = useState(2);
 	const [mapCountries, setMapCountries] = useState([]);
-	const [casesType, setCasesType] = useState("cases");
+	const [casesType, setCasesType] = useState("active");
 
 	useEffect(()=>{
 		fetch("https://disease.sh/v3/covid-19/all")
@@ -61,24 +64,39 @@ function App() {
 		});
 	}
 
+	const paletteType = darkMode ? "dark" : "light" ;
+
+	const darkTheme = createMuiTheme({
+		palette: {
+			type: paletteType,
+		}
+	});
+
 	const todayDate = new Date();
 
+	const mapColor = darkMode ? "#bdbdbd" : "111";
+
 	return (
-		<div className="App">
+		<div className={`App ${ darkMode? "dark-mode" : "light-mode" }`}>
 			<div className="home">
+				<div className="app-theme">
+					<button onClick={() => setDarkMode(prevValue => !prevValue)}>{darkMode ? <img className="light-logo" src={SunLogo} alt="Light" /> : <img className="dark-logo" src={MoonLogo} alt="Dark" />}</button>
+				</div>
 				<div className="app-left">
 					<div className="app-header">
 						<div className="app-search">
 							<h6>Select your Country</h6>
 							<div className="line"></div>
-							<FormControl className="app-dropdown">
-								<Select className="app-select" variant="outlined" onChange={onCountryChange} value={country}>
-									<MenuItem style={{backgroundColor: 'red', color: 'white'}} className="app-menutitem" value="worldwide">Worldwide</MenuItem>
-									{countries.map(country =>(
-										<MenuItem value={country.value}>{country.name}</MenuItem>
-									))}
-								</Select>
-							</FormControl>
+							<ThemeProvider theme={darkTheme}>
+								<FormControl className="app-dropdown">
+									<Select className="app-select" variant="outlined" onChange={onCountryChange} value={country}>
+										<MenuItem style={{backgroundColor: '#161625', color: '#bdbdbd'}} className="app-menutitem" value="worldwide">Worldwide</MenuItem>
+										{countries.map(country =>(
+											<MenuItem style={{backgroundColor: '#161625', color: '#bdbdbd'}} value={country.value}>{country.name}</MenuItem>
+										))}
+									</Select>
+								</FormControl>
+							</ThemeProvider>
 						</div>
 						<h5 className="app-date">{todayDate.toLocaleString('en-GB',{day:'numeric', month:'short', year:'numeric'})}</h5>
 					</div>
@@ -88,21 +106,28 @@ function App() {
 						<InfoBox className="infoitem recoveredBox" casesType={casesType} active={casesType === "recovered"} onClick={e => setCasesType('recovered')} title="Recovered" cases={"+"+numeral(countryInfo.todayRecovered).format("0,0")} total={numeral(countryInfo.recovered).format("0,0")} />
 						<InfoBox className="infoitem deathBox" casesType={casesType} active={casesType === "deaths"} onClick={e => setCasesType('deaths')} title="Deaths" cases={"+"+numeral(countryInfo.todayDeaths).format("0,0")} total={numeral(countryInfo.deaths).format("0,0")} />
 					</div>
-					<div className="app-table">
-						<h3>Live Cases Table</h3>
-						<Table countries={tableData} />
+					<div className="app-mytable">
+						<Mytable countries={tableData} />
 					</div>
 				</div>
 				<div className="app-right">
-					<Card>
-						<CardContent>
-							<div className="app-map">
-								<MyMap casesType={casesType} countries={mapCountries} center={mapCenter} zoom={mapZoom} />
-							</div>
-							<h3>Worldwide new Cases</h3>
-							<LineGraph casesType={casesType} />
-						</CardContent>
-					</Card>
+					<div className="app-map">
+						<div className="app-title">
+							<h1>COVID 19</h1>
+							{/* <input type="button" action="toggle" /> */}
+						</div>
+						<div className="geomap">
+							<MyMap dark={darkMode} mapColor={mapColor} casesType={casesType} countries={mapCountries} center={mapCenter} zoom={mapZoom} />
+						</div>
+					</div>
+					<div className="app-graph">
+						<h4 className="linegraph-title">Confirmed</h4>
+						<LineGraph casesType='cases' />
+						<h4 className="linegraph-title">Recovered</h4>
+						<LineGraph casesType='recovered' />
+						<h4 className="linegraph-title">Deaths</h4>
+						<LineGraph casesType='deaths' />
+					</div>
 				</div>
 			</div>
 		</div>

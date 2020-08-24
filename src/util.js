@@ -4,15 +4,19 @@ import { Circle, Popup } from "react-leaflet";
 
 const casesTypeColors = {
     cases: {
-      hex: "#007bff",
+      hex: "#ff073a",
       multiplier: 800,
     },
+    active: {
+        hex: "#007bff",
+        multiplier: 1000,
+    },
     recovered: {
-      hex: "#7dd71d",
+      hex: "#28a745",
       multiplier: 1200,
     },
     deaths: {
-      hex: "#fb4443",
+      hex: "#6c757d",
       multiplier: 2000,
     },
 };
@@ -24,7 +28,7 @@ export const sortData = (data) => {
 
 export const prettyPrintStat = (stat) => stat? `${numeral(stat).format("0.0a")}`: "0";
 
-export const showDataOnMap = (data, casesType='cases') => {
+export const showDataOnMap = (data, casesType) => {
     return data.map(country => {
         return <Circle
         center={[country.countryInfo.lat, country.countryInfo.long]}
@@ -38,6 +42,7 @@ export const showDataOnMap = (data, casesType='cases') => {
                 <div className="info-container">
                     <div className="info-name">{country.country}</div>
                     <div className="info-confirmed">Cases: {numeral(country.cases).format("0,0")}</div>
+                    <div className="info-active">Active: {numeral(country.active).format("0,0")}</div>
                     <div className="info-recovered">Recovered: {numeral(country.recovered).format("0,0")}</div>
                     <div className="info-deaths">Deaths: {numeral(country.deaths).format("0,0")}</div>
                 </div>

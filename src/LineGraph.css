@@ -1,0 +1,14 @@
+.linegraph-cases {
+    background-color: rgba(255, 7, 58, 0.125);
+    padding: 1.5rem;
+}
+
+.linegraph-recovered {
+    background-color: rgba(40, 167, 69, 0.125);
+    padding: 1.5rem;
+}
+
+.linegraph-deaths {
+    background-color: rgba(108, 117, 125, 0.125);
+    padding: 1.5rem;
+}
