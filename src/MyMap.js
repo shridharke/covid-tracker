@@ -32,9 +32,9 @@ function MyMap({ casesType, countries, center, zoom, dark }) {
     //     changeMapColor();
     // },[casesType, mapColors]);
 
-    const mapColor = dark ? "#bdbdbd" : "#111";
+    // const mapColor = dark ? "#bdbdbd" : "#111";
 
-    const countryStyle = { fillColor: "transparent", color: mapColor, weight: 0.5, }
+    const countryStyle = { fillColor: "transparent", color: "#919191", weight: 0.5, }
 
     return (
         <div>

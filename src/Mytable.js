@@ -22,21 +22,24 @@ function Mytable({ countries }) {
                 </div>
             </div>
             
-            { countries.map(({ country, cases, active, recovered, deaths }) => (
+            { countries.map(({ country, cases, active, recovered, deaths, todayCases, todayRecovered, todayDeaths }) => (
                 <div className="roww">
                     <div className="celll">
                         <div className="country-name">{country}</div>
                     </div>
                     <div className="celll statistic">
+                        {todayCases===0 ? null : (<div className="today-confirmed">{"+"+todayCases}</div>)}
                         <div className="total">{cases}</div>
                     </div>
                     <div className="celll statistic">
                         <div className="total">{active}</div>
                     </div>
                     <div className="celll statistic">
+                        {todayCases===0 ? null : (<div className="today-recovered">{"+"+todayRecovered}</div>)}
                         <div className="total">{recovered}</div>
                     </div>
                     <div className="celll statistic">
+                        {todayCases===0 ? null : (<div className="today-deaths">{"+"+todayDeaths}</div>)}
                         <div className="total">{deaths}</div>
                     </div>
                 </div>

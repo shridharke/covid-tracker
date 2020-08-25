@@ -167,10 +167,9 @@ h6{
 }
 
 .app-title {
+  text-align: center;
   align-self: center;
   height: 5.25rem;
-  display: flex;
-  justify-content: space-between;
   margin-bottom: 1rem;
   position: relative;
   width: 100%;
@@ -196,26 +195,23 @@ h6{
   padding-bottom: 1rem;
 }
 
-.app-theme {
-  position: absolute;
+/* .app-theme {
+
+} */
+
+.theme-button{
+  border: 0px;
+  position: fixed;
   margin-top: 1rem;
   margin-right: 1rem;
   top: 0;
   right: 0;
-  width: 2rem;
-  height: 2rem;
-}
-
-.light-logo {
-  width: 100%;
-  height: 100%;
-  color: #000;
-}
-
-.light-logo {
-  width: 100%;
-  height: 100%;
-  color: #000;
+  width: 3rem;
+  height: 3rem;
+  padding: 0.5rem;
+  background-color: transparent;
+  border-radius: 1.5rem;
+  box-shadow: 0 10px 35px rgba(0,0,0,.2);
 }
 
 @media (max-width: 990px){

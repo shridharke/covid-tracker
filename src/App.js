@@ -10,11 +10,17 @@ import MyMap from "./MyMap";
 import numeral from "numeral";
 import './App.css';
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import SunLogo from "./sun.svg";
+import SunLogo from "./sunlogo.png";
 import MoonLogo from "./moon.svg";
 
 function App() {
-	const [darkMode, setDarkMode] = useState(false);
+
+	const getInitialMode = () => {
+		const savedMode = JSON.parse(localStorage.getItem('dark'));
+		return savedMode || false;
+	}
+
+	const [darkMode, setDarkMode] = useState(getInitialMode());
 	const [countries, setCountries] = useState([]);
 	const [country, setCountry] = useState("worldwide");
 	const [countryInfo, setCountryInfo] = useState({});
@@ -23,6 +29,10 @@ function App() {
 	const [mapZoom, setMapZoom] = useState(2);
 	const [mapCountries, setMapCountries] = useState([]);
 	const [casesType, setCasesType] = useState("active");
+
+	useEffect(() => {
+		localStorage.setItem('dark', JSON.stringify(darkMode));
+	},[darkMode]);
 
 	useEffect(()=>{
 		fetch("https://disease.sh/v3/covid-19/all")
@@ -74,13 +84,11 @@ function App() {
 
 	const todayDate = new Date();
 
-	const mapColor = darkMode ? "#bdbdbd" : "111";
-
 	return (
 		<div className={`App ${ darkMode? "dark-mode" : "light-mode" }`}>
 			<div className="home">
 				<div className="app-theme">
-					<button onClick={() => setDarkMode(prevValue => !prevValue)}>{darkMode ? <img className="light-logo" src={SunLogo} alt="Light" /> : <img className="dark-logo" src={MoonLogo} alt="Dark" />}</button>
+					<button className="theme-button" onClick={() => setDarkMode(prevValue => !prevValue)}>{darkMode ? <img className="light-logo" src={SunLogo} height={25} width={25} color={"#ff073a"} alt="Light" /> : <img className="dark-logo" height={25} width={25} src={MoonLogo} alt="Dark" />}</button>
 				</div>
 				<div className="app-left">
 					<div className="app-header">
@@ -117,7 +125,7 @@ function App() {
 							{/* <input type="button" action="toggle" /> */}
 						</div>
 						<div className="geomap">
-							<MyMap dark={darkMode} mapColor={mapColor} casesType={casesType} countries={mapCountries} center={mapCenter} zoom={mapZoom} />
+							<MyMap dark={darkMode} casesType={casesType} countries={mapCountries} center={mapCenter} zoom={mapZoom} />
 						</div>
 					</div>
 					<div className="app-graph">
