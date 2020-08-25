@@ -67,14 +67,14 @@ h6{
 .app-left{
   display: flex;
   flex-direction: column;
-  width: 40rem;
+  width: 35rem;
   min-height: 60rem;
 }
 
 .app-right{
   display: flex;
   flex-direction: column;
-  width: 40rem;
+  width: 35rem;
   margin-left: 2.5rem;
   min-height: 10rem;
 }
