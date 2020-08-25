@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { FormControl, Select, MenuItem } from "@material-ui/core";
 import { createMuiTheme, ThemeProvider} from "@material-ui/core/styles";
 import InfoBox from "./InfoBox";
-import Mytable from "./Mytable";
+import Table from "./Table";
 import { sortData } from "./util";
 import LineGraph from "./LineGraph";
 import "leaflet/dist/leaflet.css";
-import MyMap from "./MyMap";
+import Map from "./Map";
 import numeral from "numeral";
 import './App.css';
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
@@ -115,7 +115,7 @@ function App() {
 						<InfoBox className="infoitem deathBox" casesType={casesType} active={casesType === "deaths"} onClick={e => setCasesType('deaths')} title="Deaths" cases={"+"+numeral(countryInfo.todayDeaths).format("0,0")} total={numeral(countryInfo.deaths).format("0,0")} />
 					</div>
 					<div className="app-mytable">
-						<Mytable countries={tableData} />
+						<Table countries={tableData} />
 					</div>
 				</div>
 				<div className="app-right">
@@ -125,7 +125,7 @@ function App() {
 							{/* <input type="button" action="toggle" /> */}
 						</div>
 						<div className="geomap">
-							<MyMap dark={darkMode} casesType={casesType} countries={mapCountries} center={mapCenter} zoom={mapZoom} />
+							<Map dark={darkMode} casesType={casesType} countries={mapCountries} center={mapCenter} zoom={mapZoom} />
 						</div>
 					</div>
 					<div className="app-graph">
